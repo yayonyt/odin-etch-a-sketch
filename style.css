@@ -1,0 +1,44 @@
+* {
+
+    box-sizing: border-box;
+
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  min-height: 100%;
+}
+
+#container {
+
+    display: flex;
+    flex-wrap: wrap;
+    height: 80%;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+
+}
+
+h1 {
+
+    width: 80%;
+    height: 10%;
+    margin-left: 10%;
+    margin-right: 10%;
+
+}
+
+.square {
+    
+    width: 6.25%;    /* 100% / 16 = 6.25% */
+    height: 6.25%;
+    box-sizing: border-box;
+    border: 1px solid #000000;
+
+
+}
