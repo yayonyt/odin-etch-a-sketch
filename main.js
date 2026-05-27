@@ -8,6 +8,7 @@ let clearButton = document.querySelector("#clearButton");
 console.log("clearButton has been defined");
 
 let sideLength = 16;
+let clicked;
 
 function drawSquares() {
 
@@ -25,7 +26,44 @@ function drawSquares() {
 
         square.addEventListener('click', () => {
 
-            square.style.backgroundColor = `#000000`;
+            let red = document.querySelector("#red").value;
+            console.log("red has been defined");
+            
+            let green = document.querySelector("#green").value;
+            console.log("green has been defined");
+
+            let blue = document.querySelector("#blue").value;
+            console.log("blue has been defined");
+
+
+            square.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
+
+            clicked = true;
+
+        });
+
+        square.addEventListener("mouseenter", () => {
+        
+            clicked = false;
+            let red = document.querySelector("#red").value;
+            console.log("red has been defined");
+            
+            let green = document.querySelector("#green").value;
+            console.log("green has been defined");
+
+            let blue = document.querySelector("#blue").value;
+            console.log("blue has been defined");
+            square.style.backgroundColor = `rgba(${red}, ${green}, ${blue}, 0.5)`;
+
+            square.addEventListener("mouseleave", () => {
+
+                if (clicked == false) {
+
+                    square.style.backgroundColor = `#ffffff`;
+
+                }
+
+            });
 
         });
 
