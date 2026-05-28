@@ -8,13 +8,14 @@ let clearButton = document.querySelector("#clearButton");
 console.log("clearButton has been defined");
 
 let sideLength = 16;
-let clicked;
+let alpha = 0.1;
 
 function drawSquares() {
 
     container.innerHTML="";
     for (let i=0; i<(sideLength**2); i++) {
 
+        let isClicked = false;
         let square = document.createElement("div");
         square.classList.add("square");
 
@@ -27,43 +28,49 @@ function drawSquares() {
         square.addEventListener('click', () => {
 
             let red = document.querySelector("#red").value;
-            console.log("red has been defined");
-            
             let green = document.querySelector("#green").value;
-            console.log("green has been defined");
-
             let blue = document.querySelector("#blue").value;
-            console.log("blue has been defined");
+            
+            alpha += 0.1;
+            if (alpha > 1) {
 
+                alpha = 0.1;
 
-            square.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
+            }
 
-            clicked = true;
+            square.style.backgroundColor = `rgba(${red}, ${green}, ${blue}, ${alpha })`;
+
+            isClicked = true;
+
 
         });
 
         square.addEventListener("mouseenter", () => {
-        
-            clicked = false;
-            let red = document.querySelector("#red").value;
-            console.log("red has been defined");
+            if (!isClicked) {
+
+                let red = document.querySelector("#red").value;       
+                let green = document.querySelector("#green").value;
+                let blue = document.querySelector("#blue").value;
+
+                square.style.backgroundColor = `rgba(${red}, ${green}, ${blue}, 0.5)`;
+            }
+        });
+
+        square.addEventListener("mouseleave", () => {
+            if (!isClicked) {
+                
+                square.style.backgroundColor = `#ffffff`;
             
-            let green = document.querySelector("#green").value;
-            console.log("green has been defined");
+            }
+        });
 
-            let blue = document.querySelector("#blue").value;
-            console.log("blue has been defined");
-            square.style.backgroundColor = `rgba(${red}, ${green}, ${blue}, 0.5)`;
+        square.addEventListener("wheel", () => {
 
-            square.addEventListener("mouseleave", () => {
+            if (isClicked) {
 
-                if (clicked == false) {
+                square.style.backgroundColor = `#ffffff`
 
-                    square.style.backgroundColor = `#ffffff`;
-
-                }
-
-            });
+            }
 
         });
 
